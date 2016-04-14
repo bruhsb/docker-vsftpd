@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/sh -ex
 
 USERDB=/etc/vsftpd/user.db
 VSFTPD_OPTIONS=${VSFTPD_OPTIONS-}
