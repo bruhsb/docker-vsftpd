@@ -22,6 +22,7 @@ generate_userdb() {
             username="$(cat $entry/username)"
             password="$(cat $entry/password)"
             printf "%s\n%s\n" "$username" "$password"
+            mkdir -p /home/vftp/$username
         else
             log "ignoring user $entry"
         fi
