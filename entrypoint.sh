@@ -2,7 +2,7 @@
 
 USERDB=/etc/vsftpd/user.db
 VSFTPD_OPTIONS=${VSFTPD_OPTIONS-}
-DEFAULT_OPTIONS="-oanonymous_enable=NO -ohide_ids=YES -ouser_sub_token=USER -olocal_root=/home/vftp/USER -opam_service_name=vsftpd.virtual -ovirtual_use_local_privs=YES -ovsftpd_log_file=/proc/1/fd/1 -oxferlog_std_format=NO -ochroot_local_user=NO -owrite_enable=YES -oguest_enable=YES"
+DEFAULT_OPTIONS="-oanonymous_enable=NO -ohide_ids=YES -ouser_sub_token=USER -olocal_root=/home/vftp/USER -opam_service_name=vsftpd.virtual -ovirtual_use_local_privs=YES -ovsftpd_log_file=/proc/1/fd/1 -oxferlog_std_format=NO -owrite_enable=YES -oguest_enable=YES"
 OVERRIDES="-obackground=NO"
 LOG_STDOUT=${LOG_STDOUT-y}
 
@@ -20,8 +20,13 @@ generate_userdb() {
         if [ -f "$entry/username" -a -f "$entry/password" ]; then
             username="$(cat $entry/username)"
             password="$(cat $entry/password)"
+            ftpdir=/home/vftp/$username
+            if [ ! -d $ftpdir ]; then
+                mkdir -p $ftpdir
+                chown ftp $ftpdir
+            fi
+
             printf "%s\n%s\n" "$username" "$password"
-            mkdir -p /home/vftp/$username
         else
             log "ignoring user $entry"
         fi
