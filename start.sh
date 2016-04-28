@@ -2,7 +2,7 @@
 
 USERDB=/etc/vsftpd/user.db
 VSFTPD_OPTIONS=${VSFTPD_OPTIONS-}
-DEFAULT_OPTIONS="-oanonymous_enable=NO -ohide_ids=YES -ouser_sub_token=USER -olocal_root=/home/vftp/USER -opam_service_name=vsftpd.virtual -ovirtual_use_local_privs=YES -ovsftpd_log_file=/proc/1/fd/1 -oxferlog_std_format=NO -owrite_enable=YES -oguest_enable=YES"
+DEFAULT_OPTIONS="-oanonymous_enable=NO -ohide_ids=YES -ouser_sub_token=USER -olocal_root=/home/vftp/USER -opam_service_name=vsftpd.virtual -ovirtual_use_local_privs=YES -ovsftpd_log_file=/proc/1/fd/1 -oxferlog_std_format=NO -owrite_enable=YES -oguest_enable=YES -opasv_min_port=20000 -opasv_max_port=20100"
 OVERRIDES="-obackground=NO"
 LOG_STDOUT=${LOG_STDOUT-y}
 
