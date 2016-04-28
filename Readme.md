@@ -11,3 +11,11 @@ be the canonical.
 
 In the future, when kubernetes/kubernetes#18372 is resolved, there might be
 a sidecar container that updates the user database.
+
+## Env variables
+
+There are some environment variables to influence vsftpd behavior.
+
+ * `SERVICE_NAME` specifies the address that `pasv_adress` will use
+ * `VSFTPD_OPTIONS` specifies additional options for vsftpd.
+    E.g. "-oanonymous_enable=yes"

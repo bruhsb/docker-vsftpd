@@ -8,11 +8,18 @@ LOG_STDOUT=${LOG_STDOUT-y}
 
 main() {
     generate_userdb
+    OVERRIDES="$OVERRIDES $(pasv_address_option)"
     if [ ! $LOG_STDOUT = y ]; then
         DEFAULT_OPTIONS="${DEFAULT_OPTIONS} -ovsftpd_log_file=/var/log/vsftpd.log"
     fi
     /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf $DEFAULT_OPTIONS $VSFTPD_OPTIONS $OVERRIDES
     wait $?
+}
+
+pasv_address_option() {
+    if [ -n "$SERVICE_NAME" ]; then
+        echo "-opasv_address=$SERVICE_NAME -opasv_addr_resolve=YES"
+    fi
 }
 
 generate_userdb() {
