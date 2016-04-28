@@ -9,8 +9,8 @@ RUN rpmkeys --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 \
  && mkdir -p /home/vftp \
  && chown ftp:ftp /home/vftp
 
-ADD entrypoint.sh /usr/libexec/container/
+ADD start.sh /usr/libexec/container/
 ADD pam.d/ /etc/pam.d/
 
 VOLUME ["/home/vftp"]
-CMD ["/usr/libexec/container/entrypoint.sh"]
+CMD ["/usr/libexec/container/start.sh"]
